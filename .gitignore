@@ -1,0 +1,12 @@
+# Virtual environment
+100_page_machine_learning/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# IDE / Editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo 
