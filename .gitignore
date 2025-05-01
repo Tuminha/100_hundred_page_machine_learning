@@ -9,4 +9,7 @@ __pycache__/
 .vscode/
 .idea/
 *.swp
-*.swo 
+*.swo
+
+# macOS specific files
+.DS_Store 
