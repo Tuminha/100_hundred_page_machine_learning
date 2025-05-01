@@ -71,4 +71,8 @@ Building reliable models requires a solid process:
 *   Implement `GridSearchCV` within the `implant_svm_hyperparameters.py` script to find optimal C/gamma for that simulated data.
 *   Explore other kernels (e.g., `poly`).
 *   Apply concepts to real (anonymized) dental implant data when available.
-*   Continue through other chapters of the book. 
+*   Continue through other chapters of the book.
+
+## Special Thanks 🙏
+
+A huge thank you to **Andriy Burkov** ([@aburkov](https://github.com/aburkov)) for writing incredibly clear and concise books that make complex topics accessible. This repository heavily relies on the excellent explanations in **"The Hundred-Page Machine Learning Book"**, and I also appreciate his work on **"The Hundred-Page Language Model Book"**. These resources are invaluable for practical learning! 
