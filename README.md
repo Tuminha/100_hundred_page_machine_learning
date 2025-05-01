@@ -12,9 +12,11 @@ The goal is to solidify understanding through practical coding exercises, initia
 ├── supervised_learning/
 │   └── support_vector_machine/
 │       ├── baseline_linear_svm.py            # Baseline Linear SVM: Data Gen, Split, Scale, Train, Evaluate
+│       ├── grid_search_rbf.py                # RBF SVM: GridSearchCV Tuning (C, gamma), Evaluation, Param Saving
 │       ├── implant_svm_hyperparameters.py    # Visualization: Effect of C & Gamma on RBF SVM Boundary
 │       └── svm_kernel_trick_example.py       # Demo: Linear vs RBF Kernel for non-linear data (Kernel Trick)
 ├── .gitignore                   # Files ignored by git
+├── best_rbf_params.json         # Best hyperparameters found by GridSearchCV for RBF SVM
 ├── requirements.txt             # Python dependencies
 └── README.md                    # This file
 ```
@@ -51,18 +53,18 @@ Building reliable models requires a solid process:
 ### Code Examples Summary
 
 *   `baseline_linear_svm.py`: Implements a basic **linear SVM pipeline** on simulated data (make_blobs). Follows best practices: scaling, train/test split, evaluation with classification report & confusion matrix. Establishes baseline performance.
+*   `grid_search_rbf.py`: Implements **hyperparameter tuning for an RBF SVM** using `GridSearchCV` on the same simulated data. Finds optimal `C` and `gamma`, evaluates the tuned model, saves the best parameters, and visualizes the result. Completes D-1 task.
 *   `implant_svm_hyperparameters.py`: **Visualizes the effect of `C` and `Gamma`** on the RBF SVM decision boundary using a 2x2 plot. Helps build intuition about underfitting/overfitting trade-offs. Runs as a standalone demo.
 *   `svm_kernel_trick_example.py`: Focuses on demonstrating the **Kernel Trick**. Uses the `make_moons` dataset to visually contrast the failure of a `linear` kernel vs the success of an `rbf` kernel on non-linear data. Includes `GridSearchCV` for the RBF example.
 *   `supervised_vector_learning_example.py`: *Deprecated.* Initial basic visualization.
 
-## Next Steps (D-1 and beyond based on feedback)
+## Next Steps (D-2 and beyond based on feedback)
 
-*   Implement `GridSearchCV` in a dedicated script (e.g., `grid_search_rbf.py`) based on the `baseline_linear_svm.py` structure.
-*   Save best parameters found by `GridSearchCV`.
-*   Log experiment results systematically (e.g., to a CSV).
-*   Replace synthetic data with real (anonymized) implant data.
+*   Load real implant CSV, repeat baseline + grid search; export results row to `experiments.csv`.
+*   Create margin-distance histogram.
+*   Review support vectors from real data → map to patient IDs; write clinical insight.
+*   Log experiment results systematically (e.g., to a CSV or using `mlflow`).
 *   Implement `argparse` for script parameters.
-*   Analyze support vectors from real data for clinical insights.
 *   Continue through other chapters of the book.
 
 ## Special Thanks 🙏
