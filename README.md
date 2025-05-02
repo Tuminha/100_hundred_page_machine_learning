@@ -21,6 +21,23 @@ The goal is to solidify understanding through practical coding exercises, initia
 └── README.md                    # This file
 ```
 
+## Foundational Concepts (Chapter 2: Notation and Definitions)
+
+Before diving deeper into algorithms, we covered essential mathematical and statistical foundations based on Chapter 2 of the book. These concepts provide the language and tools needed to understand machine learning principles.
+
+Key topics explored:
+
+*   **Notation:** Understanding symbols for scalars, vectors (e.g., `np.array([1, 2])`), matrices (`np.array([[1, 2], [3, 4]])`), summation (Σ via `np.sum()`), product (Π via `np.prod()`), sets, functions, derivatives (∇ for optimization), etc. See `chapter_2_foundations/notation_examples.py` for practical NumPy examples.
+*   **Random Variables:** Differentiating between discrete (countable outcomes, like implant Success/Failure) and continuous variables (measurable values, like ISQ or BIC). Understanding probability distributions via PMF (discrete) and PDF (continuous). See `chapter_2_foundations/random_variables_probability.py` for `scipy.stats` examples and visualizations.
+*   **Key Statistics:** Defining Expected Value (Mean μ - center of distribution), Variance (σ² - spread in squared units), and Standard Deviation (σ - spread in original units). These summarize distributions.
+*   **Estimators & Bias:** Using sample statistics (like sample mean \( \\bar{x} \)) to estimate true population parameters (like population mean μ). Understanding bias (systematic error) and the concept of unbiased estimators (e.g., sample variance s² using n-1 correction). See `chapter_2_foundations/estimators_bias.py` for a demonstration.
+*   **Bayes' Rule:** A fundamental theorem for updating probabilities based on new evidence: \( P(H|E) = \\frac{P(E|H)P(H)}{P(E)} \). Crucial for probabilistic reasoning and algorithms like Naive Bayes. See `chapter_2_foundations/bayes_rule_example.py`.
+*   **Parameter Estimation:** Methods (like Maximum Likelihood Estimation and Bayesian Estimation) used to determine the unknown parameters of a model or distribution from data.
+*   **Parameters vs. Hyperparameters:** A critical distinction! **Hyperparameters** (e.g., SVM's `C`, `gamma`, `kernel`) are chosen *before* training to configure the algorithm. **Parameters** (e.g., SVM's learned boundary definition) are learned *during* training from the data. See `chapter_2_foundations/params_vs_hyperparams.py` for a visual explanation.
+*   **Classification vs. Regression:** Two main supervised learning tasks. Classification predicts categories (e.g., Success/Failure), while Regression predicts continuous values (e.g., final ISQ score).
+*   **Model-Based vs. Instance-Based Learning:** Model-based methods learn an explicit model/function (like SVM, Linear Regression). Instance-based methods use similarity to stored training examples (like k-NN).
+*   **Shallow vs. Deep Learning:** Shallow learning refers to traditional ML algorithms (SVM, Forests, etc.). Deep Learning uses neural networks with multiple layers to learn hierarchical features automatically, often requiring more data/computation.
+
 ## Key Learnings & Examples (from SVM Section - Chapter 4)
 
 This project currently explores **Support Vector Machines (SVM)**, a powerful supervised learning algorithm for classification.
