@@ -34,7 +34,7 @@ Key topics explored:
 *   **Bayes' Rule:** A fundamental theorem for updating probabilities based on new evidence: \( P(H|E) = \\frac{P(E|H)P(H)}{P(E)} \). Crucial for probabilistic reasoning and algorithms like Naive Bayes. See `chapter_2_foundations/bayes_rule_example.py`.
 *   **Parameter Estimation:** Methods (like Maximum Likelihood Estimation and Bayesian Estimation) used to determine the unknown parameters of a model or distribution from data.
 *   **Parameters vs. Hyperparameters:** A critical distinction! **Hyperparameters** (e.g., SVM's `C`, `gamma`, `kernel`) are chosen *before* training to configure the algorithm. **Parameters** (e.g., SVM's learned boundary definition) are learned *during* training from the data. See `chapter_2_foundations/params_vs_hyperparams.py` for a visual explanation.
-*   **Classification vs. Regression:** Two main supervised learning tasks. Classification predicts categories (e.g., Success/Failure), while Regression predicts continuous values (e.g., final ISQ score).
+*   **Classification vs. Regression:** Two main supervised learning tasks. Classification predicts categories (e.g., Success/Failure), while Regression predicts continuous values (e.g., final ISQ score). See `chapter_2_foundations/classification_vs_regression.py` for visualizations.
 *   **Model-Based vs. Instance-Based Learning:** Model-based methods learn an explicit model/function (like SVM, Linear Regression). Instance-based methods use similarity to stored training examples (like k-NN).
 *   **Shallow vs. Deep Learning:** Shallow learning refers to traditional ML algorithms (SVM, Forests, etc.). Deep Learning uses neural networks with multiple layers to learn hierarchical features automatically, often requiring more data/computation.
 
