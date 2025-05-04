@@ -27,6 +27,7 @@ Before diving deeper into algorithms, we covered essential mathematical and stat
 
 Key topics explored:
 
+*   **Data Structures (Scalars, Vectors, Matrices, Tensors):** Understanding how data is organized, from single numbers (0D) to multi-dimensional arrays (ND). See `chapter_2_foundations/data_structures_demo.py` for visualizations.
 *   **Notation:** Understanding symbols for scalars, vectors (e.g., `np.array([1, 2])`), matrices (`np.array([[1, 2], [3, 4]])`), summation (Σ via `np.sum()`), product (Π via `np.prod()`), sets, functions, derivatives (∇ for optimization), etc. See `chapter_2_foundations/notation_examples.py` for practical NumPy examples.
 *   **Random Variables:** Differentiating between discrete (countable outcomes, like implant Success/Failure) and continuous variables (measurable values, like ISQ or BIC). Understanding probability distributions via PMF (discrete) and PDF (continuous). See `chapter_2_foundations/random_variables_probability.py` for `scipy.stats` examples and visualizations.
 *   **Key Statistics:** Defining Expected Value (Mean μ - center of distribution), Variance (σ² - spread in squared units), and Standard Deviation (σ - spread in original units). These summarize distributions.
