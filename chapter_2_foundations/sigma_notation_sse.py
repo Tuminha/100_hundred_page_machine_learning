@@ -60,10 +60,10 @@ squared_errors = errors ** 2
 # SSE = Σ_{i=1}^{N} squared_errors_i
 sse = np.sum(squared_errors)
 
-print(f"Actual Final ISQ (y_i) sample: {final_isq[:5]:.2f}...")
-print(f"Predicted Final ISQ (ŷ_i) sample: {predictions[:5]:.2f}...")
-print(f"Errors (y_i - ŷ_i) sample: {errors[:5]:.2f}...")
-print(f"Squared Errors sample: {squared_errors[:5]:.2f}...")
+print(f"Actual Final ISQ (y_i) sample: {np.round(final_isq[:5], 2)}...")
+print(f"Predicted Final ISQ (ŷ_i) sample: {np.round(predictions[:5], 2)}...")
+print(f"Errors (y_i - ŷ_i) sample: {np.round(errors[:5], 2)}...")
+print(f"Squared Errors sample: {np.round(squared_errors[:5], 2)}...")
 print(f"\nSum of Squared Errors (SSE = Σ (y_i - ŷ_i)²): {sse:.2f}")
 
 # 7. Visualize the Regression and Errors
