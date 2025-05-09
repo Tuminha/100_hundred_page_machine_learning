@@ -61,7 +61,7 @@ plot_vectors([vec_a, vec_b, vec_add], ['blue', 'green', 'red'], ['A', 'B', 'A+B'
 plot_vectors([vec_a, vec_b, vec_sub], ['blue', 'green', 'purple'], ['A', 'B', 'A-B'], "Vector Subtraction", ax2)
 # Note: Subtraction A-B is like adding A + (-B)
 vec_neg_b = -vec_b
-ax2.quiver(0, 0, vec_neg_b[0], vec_neg_b[1], angles='xy', scale_units='xy', scale=1, color='orange', linestyle='dashed', label='-B')
+ax2.quiver(0, 0, vec_neg_b[0], vec_neg_b[1], angles='xy', scale_units='xy', scale=1, color='orange', label='-B')
 ax2.legend()
 fig_add_sub.tight_layout()
 print("Displaying Vector Addition/Subtraction plots...")
