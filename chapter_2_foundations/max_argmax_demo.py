@@ -99,13 +99,31 @@ arg_max_f_A = discrete_domain_A[idx_max_f_A]
 
 print(f"Max f(x) over A = {max_f_A}")        # Expected: 3
 print(f"Arg Max f(x) over A = {arg_max_f_A}") # Expected: 2
+
+# Visualization for Discrete Domain Example
+fig_discrete, ax_discrete = plt.subplots(figsize=(8, 5))
+bars = ax_discrete.bar(range(len(discrete_domain_A)), f_values_A, color='skyblue',
+                       tick_label=[str(val) for val in discrete_domain_A])
+ax_discrete.set_xlabel("Input x from Discrete Domain A")
+ax_discrete.set_ylabel("Output f(x)")
+ax_discrete.set_title("Max/Arg Max for f(x) = -(x-2)²+3 over Discrete Domain A")
+
+# Highlight the max bar and annotate
+bars[idx_max_f_A].set_color('salmon')
+ax_discrete.text(idx_max_f_A, max_f_A + 0.2, f'Max f(x) = {max_f_A}\nArg Max f(x) = {arg_max_f_A}',
+                 ha='center', color='black', bbox=dict(facecolor='wheat', alpha=0.5))
+ax_discrete.grid(axis='y', linestyle='--')
+print("Displaying plot for Discrete Domain Max/Arg Max...")
+plt.show()
 print("-"*40)
 
 print("\n--- Max of a set vs Max of a function over a set ---")
 # Using Dentistry Example: Torque values
 torque_values_set_A = np.array([35, 47, 27, 38, 24])
 print(f"Set of Torque Values (A) = {torque_values_set_A}")
-print(f"Max value IN the set A: {np.max(torque_values_set_A)} (This is max(A))")
+max_in_set_A = np.max(torque_values_set_A)
+idx_max_in_set_A = np.argmax(torque_values_set_A)
+print(f"Max value IN the set A: {max_in_set_A} (This is max(A), at index {idx_max_in_set_A})")
 
 # Applying function f(x) = x - 50 to the set A
 def f_torque(x):
@@ -119,4 +137,35 @@ idx_max_output = np.argmax(torque_function_outputs)
 argmax_input_for_function = torque_values_set_A[idx_max_output]
 
 print(f"Max f(x) for x in A: {max_output_from_function}")
-print(f"Arg Max f(x) for x in A: {argmax_input_for_function} (input torque that gave max f(x))") 
+print(f"Arg Max f(x) for x in A: {argmax_input_for_function} (input torque that gave max f(x))")
+
+# Visualization for Max of Set vs Max of Function
+fig_set_func, (ax_set, ax_func) = plt.subplots(1, 2, figsize=(12, 5))
+fig_set_func.suptitle("Max of Set vs. Max of Function applied to Set Elements", fontsize=14)
+
+# Plot 1: Max of the set A (Torque values)
+bars_set = ax_set.bar(range(len(torque_values_set_A)), torque_values_set_A, color='lightgreen',
+                      tick_label=[str(val) for val in torque_values_set_A])
+ax_set.set_xlabel("Elements in Set A (Torque Values)")
+ax_set.set_ylabel("Value")
+ax_set.set_title("Original Set A of Torque Values")
+bars_set[idx_max_in_set_A].set_color('forestgreen')
+ax_set.text(idx_max_in_set_A, max_in_set_A + 2, f'Max(A) = {max_in_set_A}',
+            ha='center', color='black', bbox=dict(facecolor='white', alpha=0.7))
+ax_set.grid(axis='y', linestyle='--')
+
+# Plot 2: Max of f(x) for x in A
+bars_func = ax_func.bar(range(len(torque_values_set_A)), torque_function_outputs, color='lightcoral',
+                        tick_label=[str(val) for val in torque_values_set_A])
+ax_func.set_xlabel("Input x from Set A (Torque Values)")
+ax_func.set_ylabel("Output f(x) = x - 50")
+ax_func.set_title("f(x) = x - 50 applied to Elements of A")
+bars_func[idx_max_output].set_color('crimson')
+ax_func.text(idx_max_output, max_output_from_function + 2, 
+             f'Max f(x) = {max_output_from_function}\n(Input x={argmax_input_for_function})',
+             ha='center', color='black', bbox=dict(facecolor='white', alpha=0.7))
+ax_func.grid(axis='y', linestyle='--')
+
+plt.tight_layout(rect=[0, 0, 1, 0.96])
+print("Displaying plots for Max of Set vs Max of Function...")
+plt.show() 
