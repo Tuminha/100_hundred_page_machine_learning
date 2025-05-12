@@ -114,4 +114,43 @@ print("-"*50)
 
 print("\n--- Dental Example: ISQ/BIC Optimization ---")
 print("In dental implantology, optimizing parameters (e.g., ISQ, BIC) can be framed as minimizing a loss function.")
-print("Gradient descent is used to iteratively adjust parameters to improve outcomes, just as shown above.") 
+print("Gradient descent is used to iteratively adjust parameters to improve outcomes, just as shown above.")
+
+# --- 4. Gradient Sensitivity: Elongated Bowl Example ---
+print("\n--- 4. Gradient Sensitivity: Elongated Bowl Example ---")
+# Function: f(x, y) = (x-2)^2 + 0.1*(y-3)^2
+# Much steeper in x than y; gradient in y is small
+
+def f3(x, y):
+    return (x-2)**2 + 0.1*(y-3)**2
+
+def grad_f3(x, y):
+    return np.array([2*(x-2), 0.2*(y-3)])
+
+xg3, yg3 = np.meshgrid(np.linspace(-1, 5, 20), np.linspace(0, 6, 20))
+zg3 = f3(xg3, yg3)
+
+skip = 3
+xg3_s, yg3_s = xg3[::skip, ::skip], yg3[::skip, ::skip]
+U3 = 2*(xg3_s-2)
+V3 = 0.2*(yg3_s-3)
+
+fig4, ax4 = plt.subplots(figsize=(7, 7))
+contour3 = ax4.contour(xg3, yg3, zg3, levels=20, cmap='plasma')
+ax4.clabel(contour3, inline=True, fontsize=8)
+qv = ax4.quiver(xg3_s, yg3_s, U3, V3, color='darkgreen', angles='xy', scale_units='xy', scale=8, label='Gradient Vectors')
+ax4.scatter([2], [3], color='blue', s=80, label='Minimum (2,3)')
+ax4.set_xlabel('x')
+ax4.set_ylabel('y')
+ax4.set_title('Gradient Sensitivity: Elongated Bowl (Feature Importance)')
+ax4.legend()
+ax4.grid(True, linestyle='--')
+# Annotate a point where gradient in y is small
+annot_x, annot_y = 3.5, 3.0
+ax4.annotate('Gradient mostly in x-direction\n(y has little effect)',
+             xy=(annot_x, annot_y), xytext=(annot_x+0.5, annot_y+1.5),
+             arrowprops=dict(facecolor='black', shrink=0.05, width=1, headwidth=8),
+             fontsize=11, color='black', bbox=dict(facecolor='white', alpha=0.7))
+print("Notice how the gradient vectors point mostly along x; changing y barely affects f(x, y). Useful for feature importance intuition!")
+plt.show()
+print("-"*50) 
