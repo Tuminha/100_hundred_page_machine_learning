@@ -6,6 +6,7 @@ Covers:
 - Random Variable (Discrete and Continuous)
 - Probability Mass Function (PMF) for discrete RVs
 - Probability Density Function (PDF) for continuous RVs
+- Expected Value (Mean)
 """
 
 import numpy as np
@@ -102,19 +103,30 @@ print(f"Possible outcomes (x): {die_outcomes}")
 print(f"Probabilities P(X=x): {np.round(die_probabilities, 3)}")
 print(f"Sum of probabilities: {np.sum(die_probabilities):.2f}") # Should be 1.0
 
+# Calculate E[X] for the fair die example
+# die_outcomes and die_probabilities are already defined
+expected_value_die = np.sum(die_outcomes * die_probabilities)
+print(f"\nExample: Fair Six-Sided Die")
+print(f"Outcomes: {die_outcomes}, Probabilities: {np.round(die_probabilities, 3)}")
+print(f"E[X_die] = (1*1/6) + (2*1/6) + (3*1/6) + (4*1/6) + (5*1/6) + (6*1/6) = {expected_value_die:.2f}")
+print("This means if you roll a fair die many times, the average outcome will be close to 3.5.")
+print("Notice E[X] doesn't have to be a value X can actually take (you can't roll a 3.5).")
+
+# Plotting PMF with E[X] for Fair Die
 plt.figure(figsize=(7, 5))
-plt.bar(die_outcomes, die_probabilities, color='coral', edgecolor='black', width=0.7)
-plt.title('PMF of a Fair Six-Sided Die Roll')
+plt.bar(die_outcomes, die_probabilities, color='coral', edgecolor='black', width=0.7, label='P(X=x)')
+plt.axvline(expected_value_die, color='red', linestyle='dashed', linewidth=2, label=f'E[X] = {expected_value_die:.2f}')
+plt.title('PMF of Die Roll with Expected Value (E[X])')
 plt.xlabel('Outcome (x)')
 plt.ylabel('Probability P(X=x)')
 plt.xticks(die_outcomes)
-plt.ylim(0, np.max(die_probabilities) * 1.2) # Adjust y-limit based on max probability
+plt.ylim(0, np.max(die_probabilities) * 1.2)
 plt.grid(axis='y', linestyle='--')
 for i, prob in enumerate(die_probabilities):
     plt.text(die_outcomes[i], prob + 0.01, f'{prob:.2f}', ha='center')
-print("Displaying PMF plot for a fair die roll...")
+plt.legend()
+print("Displaying PMF plot for die roll with E[X] indicated...")
 plt.show()
-print("-"*70)
 
 # --- Probability Mass Function (PMF) with Dental Example ---
 print("\n--- Probability Mass Function (PMF): Dental Example ---")
@@ -130,9 +142,19 @@ implant_probs = np.array([0.02, 0.098, 0.3, 0.582])
 
 print(f"Sum of probabilities: {np.sum(implant_probs):.3f} (should be 1.0)")
 
+# Calculate E[X] for the dental implant success example
+# implant_outcomes and implant_probs are already defined
+expected_value_implants = np.sum(implant_outcomes * implant_probs)
+print(f"\nExample: Number of Successful Implants (out of 3)")
+print(f"Outcomes: {implant_outcomes}, Probabilities: {implant_probs}")
+print(f"E[X_implants] = (0*{implant_probs[0]}) + (1*{implant_probs[1]}) + (2*{implant_probs[2]}) + (3*{implant_probs[3]}) = {expected_value_implants:.3f}")
+print(f"On average, about {expected_value_implants:.3f} implants are expected to be successful per set of 3.")
+
+# Plotting PMF with E[X] for Dental Implants
 plt.figure(figsize=(7, 5))
-bars = plt.bar(implant_outcomes, implant_probs, color='slateblue', edgecolor='black', width=0.6)
-plt.title('PMF: Number of Successful Implants out of 3')
+plt.bar(implant_outcomes, implant_probs, color='slateblue', edgecolor='black', width=0.6, label='P(X=x)')
+plt.axvline(expected_value_implants, color='red', linestyle='dashed', linewidth=2, label=f'E[X] = {expected_value_implants:.3f}')
+plt.title('PMF of Implant Success with Expected Value (E[X])')
 plt.xlabel('Number of Successful Implants (X)')
 plt.ylabel('Probability P(X = x)')
 plt.xticks(implant_outcomes)
@@ -140,10 +162,10 @@ plt.ylim(0, max(implant_probs)*1.2)
 plt.grid(axis='y', linestyle='--')
 for i, prob in enumerate(implant_probs):
     plt.text(implant_outcomes[i], prob + 0.01, f'{prob:.3f}', ha='center', fontsize=10)
+plt.legend()
 plt.tight_layout()
-print("Displaying PMF plot for dental implant example...")
+print("Displaying PMF plot for implant success with E[X] indicated...")
 plt.show()
-print("-"*70)
 
 # --- Probability Density Function (PDF) for Continuous RVs ---
 print("\n--- Probability Density Function (PDF) for Continuous RVs ---")
@@ -180,7 +202,27 @@ plt.tight_layout()
 print(f"Probability ISQ is between 65 and 75: {prob_65_75:.3f} (area under the curve)")
 print("Displaying PDF plot for ISQ values with shaded probability interval...")
 plt.show()
-print("-"*70)
+
+# E[X] for the ISQ normal distribution example
+# For a Normal distribution N(μ, σ^2), the expected value E[X] is simply μ.
+# isq_mean is already defined as 70
+print(f"\nExample: ISQ Values (Normally Distributed)")
+print(f"ISQ values are modeled as N(μ={isq_mean}, σ={isq_std}).")
+print(f"E[X_ISQ] = μ = {isq_mean}")
+print(f"The average expected ISQ value is {isq_mean}.")
+
+# Plotting PDF with E[X] for ISQ Values
+plt.figure(figsize=(8, 5))
+plt.plot(x_vals, pdf_vals, color='darkgreen', lw=2, label=r'$f(x)$ (PDF)')
+plt.axvline(isq_mean, color='blue', linestyle='dashed', linewidth=2, label=f'E[X] = $\mu$ = {isq_mean}')
+plt.title('PDF of ISQ Values with Expected Value (E[X])')
+plt.xlabel('ISQ Value (x)')
+plt.ylabel('Probability Density $f(x)$')
+plt.grid(True, linestyle='--')
+plt.legend()
+plt.tight_layout()
+print("Displaying PDF plot for ISQ values with E[X] indicated...")
+plt.show()
 
 # --- Special Case: PDF > 1 (Narrow Normal Distribution) ---
 print("\n--- Special Case: PDF Value Greater Than 1 ---")
@@ -217,4 +259,110 @@ print(f"Peak PDF value: {peak_y:.2f} (greater than 1)")
 print(f"Probability ISQ in [69.5, 70.5]: {prob_narrow:.3f} (area under the curve, still < 1)")
 print("Displaying narrow PDF plot to illustrate PDF > 1 confusion point...")
 plt.show()
+print("-"*70)
+
+# --- Expected Value (Mean) ---
+print("\n--- Expected Value (Mean, Average) E[X] or μ ---")
+print("The Expected Value (E[X]) is the long-run average value of a random variable.")
+print("It represents the 'center of mass' or balancing point of its probability distribution.")
+
+print("\nFor a Discrete Random Variable X:")
+print("E[X] = Σ [x * P(X=x)] for all possible values x.")
+print("It's the sum of each value multiplied by its probability.")
+
+print("\nFor a Continuous Random Variable X:")
+print("E[X] = ∫ x * f(x) dx, integrated over all possible values of x.")
+print("It's the integral of each value x multiplied by its probability density f(x).")
+
+print("\nKey Confusion Point for Continuous E[X]:")
+print("The integral for E[X] is generally from -∞ to +∞ (or the full support of the PDF).")
+print("Calculating ∫[a,b] x*f(x)dx for a sub-interval [a,b] is NOT E[X], unless f(x) is 0 outside [a,b].")
+print("It gives a 'conditional expectation' contribution from that interval but isn't the overall mean.")
+print("For named distributions like Normal, Exponential, etc., E[X] is often a known parameter (e.g., μ for Normal).")
+print("-"*70)
+
+# E[X] for the fair die example
+# die_outcomes and die_probabilities are defined in the PMF section
+expected_value_die = np.sum(die_outcomes * die_probabilities)
+print(f"\nExample: Fair Six-Sided Die")
+print(f"Outcomes: {die_outcomes}, Probabilities: {np.round(die_probabilities, 3)}")
+print(f"E[X_die] = (1*1/6) + (2*1/6) + (3*1/6) + (4*1/6) + (5*1/6) + (6*1/6) = {expected_value_die:.2f}")
+print("This means if you roll a fair die many times, the average outcome will be close to 3.5.")
+print("Notice E[X] doesn't have to be a value X can actually take (you can't roll a 3.5).")
+
+# Plotting PMF with E[X] for Fair Die (within E[X] section)
+plt.figure(figsize=(7, 5))
+plt.bar(die_outcomes, die_probabilities, color='coral', edgecolor='black', width=0.7, label='P(X=x)')
+plt.axvline(expected_value_die, color='red', linestyle='dashed', linewidth=2, label=f'E[X] = {expected_value_die:.2f}')
+plt.title('E[X] on PMF of Die Roll')
+plt.xlabel('Outcome (x)')
+plt.ylabel('Probability P(X=x)')
+plt.xticks(die_outcomes)
+plt.ylim(0, np.max(die_probabilities) * 1.2)
+plt.grid(axis='y', linestyle='--')
+for i, prob in enumerate(die_probabilities):
+    plt.text(die_outcomes[i], prob + 0.01, f'{prob:.2f}', ha='center')
+plt.legend()
+print("Displaying die roll PMF with E[X] (dedicated plot)...")
+plt.show()
+
+# E[X] for the dental implant success example
+# implant_outcomes and implant_probs are defined in the PMF section
+expected_value_implants = np.sum(implant_outcomes * implant_probs)
+print(f"\nExample: Number of Successful Implants (out of 3)")
+print(f"Outcomes: {implant_outcomes}, Probabilities: {implant_probs}")
+print(f"E[X_implants] = (0*{implant_probs[0]}) + (1*{implant_probs[1]}) + (2*{implant_probs[2]}) + (3*{implant_probs[3]}) = {expected_value_implants:.3f}")
+print(f"On average, about {expected_value_implants:.3f} implants are expected to be successful per set of 3.")
+
+# Plotting PMF with E[X] for Dental Implants (within E[X] section)
+plt.figure(figsize=(7, 5))
+plt.bar(implant_outcomes, implant_probs, color='slateblue', edgecolor='black', width=0.6, label='P(X=x)')
+plt.axvline(expected_value_implants, color='red', linestyle='dashed', linewidth=2, label=f'E[X] = {expected_value_implants:.3f}')
+plt.title('E[X] on PMF of Implant Success')
+plt.xlabel('Number of Successful Implants (X)')
+plt.ylabel('Probability P(X = x)')
+plt.xticks(implant_outcomes)
+plt.ylim(0, max(implant_probs)*1.2)
+plt.grid(axis='y', linestyle='--')
+for i, prob in enumerate(implant_probs):
+    plt.text(implant_outcomes[i], prob + 0.01, f'{prob:.3f}', ha='center', fontsize=10)
+plt.legend()
+plt.tight_layout()
+print("Displaying implant PMF with E[X] (dedicated plot)...")
+plt.show()
+
+print("\nFor a Continuous Random Variable X:")
+print("E[X] = ∫ x * f(x) dx, integrated over all possible values of x.")
+print("It's the integral of each value x multiplied by its probability density f(x).")
+
+# E[X] for the ISQ normal distribution example
+# For a Normal distribution N(μ, σ^2), the expected value E[X] is simply μ.
+# isq_mean, isq_std, x_vals, pdf_vals are defined in the PDF section
+print(f"\nExample: ISQ Values (Normally Distributed)")
+print(f"ISQ values are modeled as N(μ={isq_mean}, σ={isq_std}).")
+print(f"E[X_ISQ] = μ = {isq_mean}")
+print(f"The average expected ISQ value is {isq_mean}.")
+
+# Plotting PDF with E[X] for ISQ Values (within E[X] section)
+plt.figure(figsize=(8, 5))
+plt.plot(x_vals, pdf_vals, color='darkgreen', lw=2, label=r'$f(x)$ (PDF)')
+plt.axvline(isq_mean, color='blue', linestyle='dashed', linewidth=2, label=f'E[X] = $\mu$ = {isq_mean}')
+plt.title('E[X] on PDF of ISQ Values')
+plt.xlabel('ISQ Value (x)')
+plt.ylabel('Probability Density $f(x)$')
+plt.grid(True, linestyle='--')
+# Re-shade area for context if desired, or keep it simple focusing on E[X]
+x_fill_e_context = np.linspace(isq_mean - isq_std, isq_mean + isq_std, 200) # Example: +/- 1 std dev
+y_fill_e_context = norm.pdf(x_fill_e_context, loc=isq_mean, scale=isq_std)
+plt.fill_between(x_fill_e_context, y_fill_e_context, color='lightgreen', alpha=0.3, label=r'Context: $\mu \pm \sigma$')
+plt.legend()
+plt.tight_layout()
+print("Displaying ISQ PDF with E[X] (dedicated plot)...")
+plt.show()
+
+print("\nKey Confusion Point for Continuous E[X]:")
+print("The integral for E[X] is generally from -∞ to +∞ (or the full support of the PDF).")
+print("Calculating ∫[a,b] x*f(x)dx for a sub-interval [a,b] is NOT E[X], unless f(x) is 0 outside [a,b].")
+print("It gives a 'conditional expectation' contribution from that interval but isn't the overall mean.")
+print("For named distributions like Normal, Exponential, etc., E[X] is often a known parameter (e.g., μ for Normal).")
 print("-"*70)
