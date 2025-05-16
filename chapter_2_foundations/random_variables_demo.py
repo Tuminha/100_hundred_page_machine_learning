@@ -7,6 +7,8 @@ Covers:
 - Probability Mass Function (PMF) for discrete RVs
 - Probability Density Function (PDF) for continuous RVs
 - Expected Value (Mean)
+- Variance (σ²)
+- Standard Deviation (σ)
 """
 
 import numpy as np
@@ -365,4 +367,121 @@ print("The integral for E[X] is generally from -∞ to +∞ (or the full support
 print("Calculating ∫[a,b] x*f(x)dx for a sub-interval [a,b] is NOT E[X], unless f(x) is 0 outside [a,b].")
 print("It gives a 'conditional expectation' contribution from that interval but isn't the overall mean.")
 print("For named distributions like Normal, Exponential, etc., E[X] is often a known parameter (e.g., μ for Normal).")
+print("-"*70)
+
+# --- Variance (σ²) and Standard Deviation (σ) ---
+print("\n--- Variance (σ²) and Standard Deviation (σ) ---")
+print("Variance and Standard Deviation measure the SPREAD or DISPERSION of a random variable's distribution.")
+
+print("\nVariance (Var(X) or σ²):")
+print("Measures the average squared difference of a random variable from its Expected Value (Mean).")
+print("Definitional Formula: Var(X) = E[(X - E[X])²] = E[(X - μ)²]")
+print("A larger variance means values are, on average, further spread out from the mean.")
+print("Computational Formula (often easier): Var(X) = E[X²] - (E[X])²")
+print("Note: Variance is in SQUARED units of the random variable.")
+
+print("\nStandard Deviation (SD(X) or σ):")
+print("Is the square root of the Variance: σ = √Var(X).")
+print("Provides a measure of spread in the SAME UNITS as the random variable, making it more interpretable.")
+print("A smaller SD means values tend to be close to the mean; larger SD means more spread.")
+
+# --- Calculations for Discrete Random Variables ---
+print("\n--- Variance/SD for Discrete RVs ---")
+
+# For Fair Six-Sided Die
+# E[X_die] (expected_value_die) was calculated in the E[X] section as 3.5
+# die_outcomes = [1, 2, 3, 4, 5, 6], die_probabilities = [1/6]*6
+print("\nExample: Fair Six-Sided Die")
+# First, calculate E[X²] = Σ [x² * P(X=x)]
+e_x_squared_die = np.sum((die_outcomes**2) * die_probabilities)
+print(f"E[X²_die] = (1²*1/6) + ... + (6²*1/6) = {e_x_squared_die:.3f}")
+var_die = e_x_squared_die - (expected_value_die**2)
+sd_die = np.sqrt(var_die)
+print(f"Var(X_die) = E[X²_die] - (E[X_die])² = {e_x_squared_die:.3f} - ({expected_value_die:.2f})² = {var_die:.3f}")
+print(f"SD(X_die) = √Var(X_die) = {sd_die:.3f}")
+print(f"Interpretation: For a fair die, the outcomes vary from the mean of {expected_value_die:.2f} by approx. {sd_die:.3f} on average.")
+
+# Plotting PMF with E[X] and SD for Fair Die
+plt.figure(figsize=(8, 5))
+plt.bar(die_outcomes, die_probabilities, color='coral', edgecolor='black', width=0.7, label='P(X=x)')
+plt.axvline(expected_value_die, color='red', linestyle='dashed', linewidth=2, label=f'E[X] = {expected_value_die:.2f}')
+# Show E[X] ± SD(X)
+plt.axvline(expected_value_die - sd_die, color='darkorange', linestyle=':', linewidth=2, label=f'E[X] ± SD (approx. {expected_value_die-sd_die:.2f} to {expected_value_die+sd_die:.2f})')
+plt.axvline(expected_value_die + sd_die, color='darkorange', linestyle=':', linewidth=2)
+plt.title('Die Roll PMF with E[X] and Standard Deviation (σ)')
+plt.xlabel('Outcome (x)')
+plt.ylabel('Probability P(X=x)')
+plt.xticks(die_outcomes)
+plt.legend()
+plt.grid(True, axis='y', linestyle='--')
+print("Displaying die roll PMF with E[X] and ±SD marked...")
+plt.show()
+
+# For Dental Implant Success
+# E[X_implants] (expected_value_implants) was 2.444
+# implant_outcomes = [0, 1, 2, 3], implant_probs = [0.02, 0.098, 0.3, 0.582]
+print("\nExample: Number of Successful Implants (out of 3)")
+# First, calculate E[X²]
+e_x_squared_implants = np.sum((implant_outcomes**2) * implant_probs)
+print(f"E[X²_implants] = (0²*{implant_probs[0]}) + ... + (3²*{implant_probs[3]}) = {e_x_squared_implants:.3f}")
+var_implants = e_x_squared_implants - (expected_value_implants**2)
+sd_implants = np.sqrt(var_implants)
+print(f"Var(X_implants) = {e_x_squared_implants:.3f} - ({expected_value_implants:.3f})² = {var_implants:.3f}")
+print(f"SD(X_implants) = {sd_implants:.3f}")
+print(f"Interpretation: For 3 implants, successful outcomes vary from mean of {expected_value_implants:.3f} by approx. {sd_implants:.3f} on average.")
+
+# Plotting PMF with E[X] and SD for Dental Implants
+plt.figure(figsize=(8, 5))
+plt.bar(implant_outcomes, implant_probs, color='slateblue', edgecolor='black', width=0.6, label='P(X=x)')
+plt.axvline(expected_value_implants, color='red', linestyle='dashed', linewidth=2, label=f'E[X] = {expected_value_implants:.3f}')
+# Show E[X] ± SD(X)
+plt.axvline(expected_value_implants - sd_implants, color='purple', linestyle=':', linewidth=2, label=f'E[X] ± SD (approx. {expected_value_implants-sd_implants:.3f} to {expected_value_implants+sd_implants:.3f})')
+plt.axvline(expected_value_implants + sd_implants, color='purple', linestyle=':', linewidth=2)
+plt.title('Implant Success PMF with E[X] and Standard Deviation (σ)')
+plt.xlabel('Number of Successful Implants (X)')
+plt.ylabel('Probability P(X=x)')
+plt.xticks(implant_outcomes)
+plt.legend()
+plt.grid(True, axis='y', linestyle='--')
+plt.tight_layout()
+print("Displaying implant PMF with E[X] and ±SD marked...")
+plt.show()
+
+# --- Variance/SD for Continuous Random Variables ---
+print("\n--- Variance/SD for Continuous RVs ---")
+
+# For ISQ Values (Normal Distribution)
+# isq_mean = 70, isq_std = 5 (from PDF section)
+# For a Normal distribution N(μ, σ²), Var(X) = σ² and SD(X) = σ.
+print("\nExample: ISQ Values (Normally Distributed N(μ=70, σ=5))")
+var_isq = isq_std**2
+sd_isq = isq_std # This is directly the parameter sigma
+print(f"Var(X_ISQ) = σ² = ({isq_std})² = {var_isq}")
+print(f"SD(X_ISQ) = σ = {sd_isq}")
+print(f"Interpretation: ISQ values typically deviate from the mean of {isq_mean} by {sd_isq} ISQ units.")
+
+# Plotting PDF with E[X] and SD regions for ISQ
+# x_vals and pdf_vals are from the PDF section
+plt.figure(figsize=(10, 6))
+plt.plot(x_vals, pdf_vals, color='darkgreen', lw=2, label='PDF $f(x)$')
+plt.axvline(isq_mean, color='blue', linestyle='dashed', linewidth=2, label=f'E[X] = $\mu$ = {isq_mean}')
+
+# Shade E[X] ± 1*SD, E[X] ± 2*SD, E[X] ± 3*SD
+plt.fill_between(x_vals, pdf_vals, where=(x_vals >= isq_mean - sd_isq) & (x_vals <= isq_mean + sd_isq), color='lightgreen', alpha=0.5, label=f'$\mu \pm 1\sigma$ ({norm.cdf(isq_mean + sd_isq, isq_mean, sd_isq) - norm.cdf(isq_mean - sd_isq, isq_mean, sd_isq):.1%})')
+plt.fill_between(x_vals, pdf_vals, where=(x_vals >= isq_mean - 2*sd_isq) & (x_vals <= isq_mean + 2*sd_isq), color='yellowgreen', alpha=0.3, label=f'$\mu \pm 2\sigma$ ({norm.cdf(isq_mean + 2*sd_isq, isq_mean, sd_isq) - norm.cdf(isq_mean - 2*sd_isq, isq_mean, sd_isq):.1%})')
+# For 3 sigma, adjust alpha if too dark or extend x_vals if needed
+# plt.fill_between(x_vals, pdf_vals, where=(x_vals >= isq_mean - 3*sd_isq) & (x_vals <= isq_mean + 3*sd_isq), color='olivedrab', alpha=0.2, label='μ ± 3σ')
+
+plt.title('ISQ PDF with E[X] and Standard Deviation (σ) Regions (Empirical Rule Context)')
+plt.xlabel('ISQ Value (x)')
+plt.ylabel('Probability Density $f(x)$')
+plt.legend(fontsize=8)
+plt.grid(True, linestyle='--')
+plt.tight_layout()
+print("Displaying ISQ PDF with E[X] and ±1σ, ±2σ regions marked...")
+print("For a Normal distribution (bell curve):")
+print(f"  ~68% of values fall within μ ± 1σ (approx. {isq_mean-sd_isq} to {isq_mean+sd_isq})")
+print(f"  ~95% of values fall within μ ± 2σ (approx. {isq_mean-2*sd_isq} to {isq_mean+2*sd_isq})")
+print(f"  ~99.7% of values fall within μ ± 3σ (approx. {isq_mean-3*sd_isq} to {isq_mean+3*sd_isq})")
+plt.show()
 print("-"*70)
