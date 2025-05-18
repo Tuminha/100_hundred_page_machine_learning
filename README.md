@@ -15,6 +15,22 @@ The goal is to solidify understanding through practical coding exercises, initia
 │       ├── grid_search_rbf.py                # RBF SVM: GridSearchCV Tuning (C, gamma), Evaluation, Param Saving
 │       ├── implant_svm_hyperparameters.py    # Visualization: Effect of C & Gamma on RBF SVM Boundary
 │       └── svm_kernel_trick_example.py       # Demo: Linear vs RBF Kernel for non-linear data (Kernel Trick)
+├── chapter_2_foundations/      # Scripts for Chapter 2 concepts
+│   ├── data_structures_demo.py
+│   ├── notation_examples.py
+│   ├── sigma_notation_sse.py
+│   ├── pi_notation_joint_prob.py
+│   ├── set_operations_demo.py
+│   ├── vector_operations_demo.py
+│   ├── max_argmax_demo.py
+│   ├── assignment_operator_demo.py
+│   ├── functions_demo.py
+│   ├── gradient_derivative_demo.py
+│   ├── random_variables_demo.py
+│   ├── estimators_bias_demo.py
+│   ├── bayes_rule_demo.py
+│   ├── params_vs_hyperparams.py
+│   └── classification_vs_regression.py
 ├── .gitignore                   # Files ignored by git
 ├── best_rbf_params.json         # Best hyperparameters found by GridSearchCV for RBF SVM
 ├── requirements.txt             # Python dependencies
@@ -39,7 +55,7 @@ Key topics explored:
     - See `chapter_2_foundations/random_variables_demo.py` for code, explanations, and all visualizations pertaining to Discrete/Continuous RVs, PMF, PDF, Expected Value, Variance, and Standard Deviation.
 *   **Key Statistics:** Defining Expected Value (Mean μ - center of distribution), Variance (σ² - spread in squared units), and Standard Deviation (σ - spread in original units). These summarize distributions.
 *   **Estimators & Bias:** Understanding how sample statistics (e.g., sample mean \(\bar{x}\)) are used to estimate unknown true population parameters (e.g., population mean \(\mu\)). Explores the concept of bias (systematic over/underestimation) and distinguishes between biased and unbiased estimators. Key illustration includes why sample mean \(\bar{x}\) is an unbiased estimator for \(\mu\), and a detailed look at sample variance: demonstrating why using a denominator of \(n\) leads to a biased estimator for population variance \(\sigma^2\), while Bessel's correction (using \(n-1\) in the denominator) yields an unbiased estimator \(s^2\). The script `chapter_2_foundations/estimators_bias_demo.py` provides a simulation and visualizations to clearly show these concepts in action, including histograms of estimates and their convergence (or lack thereof) to true parameters.
-*   **Bayes' Rule:** A fundamental theorem for updating probabilities based on new evidence: \( P(H|E) = \\frac{P(E|H)P(H)}{P(E)} \). Crucial for probabilistic reasoning and algorithms like Naive Bayes. See `chapter_2_foundations/bayes_rule_example.py`.
+*   **Bayes' Rule:** A fundamental theorem for updating probabilities based on new evidence: \( P(H|E) = \\frac{P(E|H)P(H)}{P(E)} \). Crucial for probabilistic reasoning and algorithms like Naive Bayes. See `chapter_2_foundations/bayes_rule_demo.py`.
 *   **Parameter Estimation:** Methods (like Maximum Likelihood Estimation and Bayesian Estimation) used to determine the unknown parameters of a model or distribution from data.
 *   **Parameters vs. Hyperparameters:** A critical distinction! **Hyperparameters** (e.g., SVM's `C`, `gamma`, `kernel`) are chosen *before* training to configure the algorithm. **Parameters** (e.g., SVM's learned boundary definition) are learned *during* training from the data. See `chapter_2_foundations/params_vs_hyperparams.py` for a visual explanation.
 *   **Classification vs. Regression:** Two main supervised learning tasks. Classification predicts categories (e.g., Success/Failure), while Regression predicts continuous values (e.g., final ISQ score). See `chapter_2_foundations/classification_vs_regression.py` for visualizations.
@@ -94,4 +110,4 @@ Building reliable models requires a solid process:
 
 ## Special Thanks 🙏
 
-A huge thank you to **Andriy Burkov** ([@aburkov](https://github.com/aburkov)) for writing incredibly clear and concise books that make complex topics accessible. This repository heavily relies on the excellent explanations in **"The Hundred-Page Machine Learning Book"**, and I also appreciate his work on **"The Hundred-Page Language Model Book"**. These resources are invaluable for practical learning! 
+A huge thank you to **Andriy Burkov** ([@aburkov](https://github.com/aburkov)) for writing incredibly clear and concise books that make complex topics accessible. This repository heavily relies on the excellent explanations in **"The Hundred-Page Machine Learning Book"**, and I also appreciate his work on **"The Hundred-Page Language Model Book"**. These resources are invaluable for practical learning!
