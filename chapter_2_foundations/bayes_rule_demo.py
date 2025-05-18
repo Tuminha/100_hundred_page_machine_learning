@@ -70,6 +70,45 @@ print(f"P(Disease | Test Positive) = {P_Disease_given_Pos:.4f}")
 print(f"\nResult: If a person tests positive, the probability they actually have the disease is {P_Disease_given_Pos:.2%}.")
 print("Notice how the posterior probability ({P_Disease_given_Pos:.2%}) is much lower than the test's true positive rate ({P_Pos_given_Disease:.0%}).")
 print("This is because the disease is rare (low prior P(Disease)). This is a common counter-intuitive result!")
+
+# Visualization for the Disease Test Example
+labels_disease_viz = ['P(Disease) * P(Pos|Disease)\n(True Positives in Pop.)',
+                      'P(No Disease) * P(Pos|No Disease)\n(False Positives in Pop.)']
+# Calculate the components of P(Test Positive)
+comp1 = P_Pos_given_Disease * P_Disease        # P(Test Positive AND Disease)
+comp2 = P_Pos_given_No_Disease * P_No_Disease  # P(Test Positive AND No Disease)
+sizes = [comp1, comp2]
+
+fig_disease_bayes, ax_disease_bayes = plt.subplots(figsize=(8, 6))
+
+# Bar for P(Test Positive) broken down
+bar_bottoms = [0, comp1] # For stacking the second component
+ax_disease_bayes.bar(['Components of P(Test Positive)'], [comp1], color='lightcoral', edgecolor='black', label=f'P(Has Disease AND Tests Positive)\n= {comp1:.4f} ({(comp1/P_Test_Positive):.2%} of all positives)', width=0.5)
+ax_disease_bayes.bar(['Components of P(Test Positive)'], [comp2], bottom=[comp1], color='lightskyblue', edgecolor='black', label=f'P(No Disease AND Tests Positive)\n= {comp2:.4f} ({(comp2/P_Test_Positive):.2%} of all positives)', width=0.5)
+
+# Add text for total P(Test Positive)
+ax_disease_bayes.text(0, P_Test_Positive + 0.005, f'Total P(Test Positive) = {P_Test_Positive:.4f}', ha='center', va='bottom', fontweight='bold')
+
+# Add an arrow or annotation for the posterior probability
+# P(Disease | Test Positive) = comp1 / P_Test_Positive
+ax_disease_bayes.annotate(f"Posterior P(Disease | Test Positive) = {P_Disease_given_Pos:.2%}",
+            xy=(0, comp1 / 2), # Position arrow in the middle of the first component
+            xytext=(0.4, P_Test_Positive * 0.6), # Text position
+            arrowprops=dict(facecolor='black', shrink=0.05, width=1, headwidth=5),
+            ha='center', va='center',
+            bbox=dict(boxstyle="round,pad=0.3", fc="yellow", ec="black", lw=1, alpha=0.8)
+)
+
+ax_disease_bayes.set_ylabel('Probability Mass')
+ax_disease_bayes.set_title('Bayes\' Rule: Breakdown of P(Test Positive) & Posterior (Disease Example)')
+ax_disease_bayes.set_ylim(0, P_Test_Positive * 1.4) # Adjust limit for text
+ax_disease_bayes.legend(loc='upper right', fontsize='small')
+plt.xticks([]) # Remove x-axis tick label for the single category
+
+print("\nDisplaying plot for Bayes' Rule components (Disease Example)...")
+plt.tight_layout()
+plt.show()
+
 print("-" * 70)
 
 print("\n--- Bayes' Rule: Dental Example (Apical Periodontitis Diagnosis) ---")
