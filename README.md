@@ -29,6 +29,7 @@ The goal is to solidify understanding through practical coding exercises, initia
 │   ├── random_variables_demo.py
 │   ├── estimators_bias_demo.py
 │   ├── bayes_rule_demo.py
+│   ├── parameter_estimation_demo.py
 │   ├── params_vs_hyperparams.py
 │   └── classification_vs_regression.py
 ├── .gitignore                   # Files ignored by git
@@ -56,7 +57,13 @@ Key topics explored:
 *   **Key Statistics:** Defining Expected Value (Mean μ - center of distribution), Variance (σ² - spread in squared units), and Standard Deviation (σ - spread in original units). These summarize distributions.
 *   **Estimators & Bias:** Understanding how sample statistics (e.g., sample mean \(\bar{x}\)) are used to estimate unknown true population parameters (e.g., population mean \(\mu\)). Explores the concept of bias (systematic over/underestimation) and distinguishes between biased and unbiased estimators. Key illustration includes why sample mean \(\bar{x}\) is an unbiased estimator for \(\mu\), and a detailed look at sample variance: demonstrating why using a denominator of \(n\) leads to a biased estimator for population variance \(\sigma^2\), while Bessel's correction (using \(n-1\) in the denominator) yields an unbiased estimator \(s^2\). The script `chapter_2_foundations/estimators_bias_demo.py` provides a simulation and visualizations to clearly show these concepts in action, including histograms of estimates and their convergence (or lack thereof) to true parameters.
 *   **Bayes' Rule:** A fundamental theorem for updating probabilities based on new evidence: \( P(H|E) = \\frac{P(E|H)P(H)}{P(E)} \). Crucial for probabilistic reasoning and algorithms like Naive Bayes. See `chapter_2_foundations/bayes_rule_demo.py`.
-*   **Parameter Estimation:** Methods (like Maximum Likelihood Estimation and Bayesian Estimation) used to determine the unknown parameters of a model or distribution from data.
+*   **Parameter Estimation:** Methods for determining the unknown parameters of a model or distribution from data, including:
+    - **Maximum Likelihood Estimation (MLE):** Finds parameter values that maximize the likelihood of observed data.
+    - **Method of Moments (MoM):** Matches sample moments (like mean, variance) to population moments.
+    - **Bayesian Estimation:** Updates prior beliefs about parameters with new data to form a posterior.
+    - **Properties of estimators:** Unbiasedness, efficiency, and consistency.
+    - **Dental application:** Estimating implant success rates using MLE and Bayesian methods, with visualizations of prior/posterior and confidence intervals.
+    - See `chapter_2_foundations/parameter_estimation_demo.py` for code, explanations, and visualizations.
 *   **Parameters vs. Hyperparameters:** A critical distinction! **Hyperparameters** (e.g., SVM's `C`, `gamma`, `kernel`) are chosen *before* training to configure the algorithm. **Parameters** (e.g., SVM's learned boundary definition) are learned *during* training from the data. See `chapter_2_foundations/params_vs_hyperparams.py` for a visual explanation.
 *   **Classification vs. Regression:** Two main supervised learning tasks. Classification predicts categories (e.g., Success/Failure), while Regression predicts continuous values (e.g., final ISQ score). See `chapter_2_foundations/classification_vs_regression.py` for visualizations.
 *   **Model-Based vs. Instance-Based Learning:** Model-based methods learn an explicit model/function (like SVM, Linear Regression). Instance-based methods use similarity to stored training examples (like k-NN).
