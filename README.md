@@ -30,6 +30,7 @@ The goal is to solidify understanding through practical coding exercises, initia
 │   ├── estimators_bias_demo.py
 │   ├── bayes_rule_demo.py
 │   ├── parameter_estimation_demo.py
+│   ├── model_vs_instance_based_demo.py
 │   ├── params_vs_hyperparams.py
 │   └── classification_vs_regression.py
 ├── .gitignore                   # Files ignored by git
@@ -66,7 +67,10 @@ Key topics explored:
     - See `chapter_2_foundations/parameter_estimation_demo.py` for code, explanations, and visualizations.
 *   **Parameters vs. Hyperparameters:** A critical distinction! **Hyperparameters** (e.g., SVM's `C`, `gamma`, `kernel`) are chosen *before* training to configure the algorithm. **Parameters** (e.g., SVM's learned boundary definition) are learned *during* training from the data. See `chapter_2_foundations/params_vs_hyperparams.py` for a visual explanation.
 *   **Classification vs. Regression:** Two main supervised learning tasks. Classification predicts categories (e.g., Success/Failure), while Regression predicts continuous values (e.g., final ISQ score). See `chapter_2_foundations/classification_vs_regression.py` for visualizations.
-*   **Model-Based vs. Instance-Based Learning:** Model-based methods learn an explicit model/function (like SVM, Linear Regression). Instance-based methods use similarity to stored training examples (like k-NN).
+*   **Model-Based vs. Instance-Based Learning:** Distinguishes two main learning paradigms. 
+    - **Model-Based Learning** (e.g., Logistic Regression, SVM, Decision Trees) aims to build an explicit model from the training data by learning its parameters. Predictions are made by feeding new data into this learned model.
+    - **Instance-Based Learning** (e.g., k-Nearest Neighbors) memorizes training instances and makes predictions for new data by comparing it to these stored instances, often using a similarity or distance measure. 
+    - The script `chapter_2_foundations/model_vs_instance_based_demo.py` visually contrasts these approaches using Logistic Regression and k-NN on a synthetic dataset, showing their different decision boundaries and discussing conceptual dental applications.
 *   **Shallow vs. Deep Learning:** Shallow learning refers to traditional ML algorithms (SVM, Forests, etc.). Deep Learning uses neural networks with multiple layers to learn hierarchical features automatically, often requiring more data/computation.
 
 ## Key Learnings & Examples (from SVM Section - Chapter 4)
