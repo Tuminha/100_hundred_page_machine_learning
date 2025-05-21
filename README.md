@@ -31,6 +31,7 @@ The goal is to solidify understanding through practical coding exercises, initia
 │   ├── bayes_rule_demo.py
 │   ├── parameter_estimation_demo.py
 │   ├── model_vs_instance_based_demo.py
+│   ├── shallow_vs_deep_demo.py
 │   ├── params_vs_hyperparams.py
 │   └── classification_vs_regression.py
 ├── .gitignore                   # Files ignored by git
@@ -71,7 +72,11 @@ Key topics explored:
     - **Model-Based Learning** (e.g., Logistic Regression, SVM, Decision Trees) aims to build an explicit model from the training data by learning its parameters. Predictions are made by feeding new data into this learned model.
     - **Instance-Based Learning** (e.g., k-Nearest Neighbors) memorizes training instances and makes predictions for new data by comparing it to these stored instances, often using a similarity or distance measure. 
     - The script `chapter_2_foundations/model_vs_instance_based_demo.py` visually contrasts these approaches using Logistic Regression and k-NN on a synthetic dataset, showing their different decision boundaries and discussing conceptual dental applications.
-*   **Shallow vs. Deep Learning:** Shallow learning refers to traditional ML algorithms (SVM, Forests, etc.). Deep Learning uses neural networks with multiple layers to learn hierarchical features automatically, often requiring more data/computation.
+*   **Shallow vs. Deep Learning:** Differentiates learning algorithms based on model complexity and feature learning. 
+    - **Shallow Learning** (e.g., Logistic Regression, SVM, Decision Trees) typically involves simpler architectures with fewer layers, often relying on hand-crafted features. They are generally more interpretable and less computationally demanding.
+    - **Deep Learning** (e.g., Multi-Layer Perceptrons with many layers, CNNs, RNNs) uses deep architectures with multiple hidden layers to automatically learn hierarchical feature representations from raw data. They can model highly complex patterns but require large datasets and more computation.
+    - The script `chapter_2_foundations/shallow_vs_deep_demo.py` conceptually demonstrates this by comparing Logistic Regression (shallow) with a simple MLP (representing deep) on a non-linearly separable dataset, visualizing their differing abilities to capture complex decision boundaries and includes conceptual dental examples for caries risk (shallow) vs. radiographic analysis (deep).
+*   **Supervised, Unsupervised, and Reinforcement Learning:** The three main categories of machine learning problems (placeholder for future content).
 
 ## Key Learnings & Examples (from SVM Section - Chapter 4)
 
