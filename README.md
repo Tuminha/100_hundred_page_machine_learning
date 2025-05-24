@@ -34,6 +34,8 @@ The goal is to solidify understanding through practical coding exercises, initia
 │   ├── shallow_vs_deep_demo.py
 │   ├── params_vs_hyperparams.py
 │   └── classification_vs_regression.py
+├── chapter_3_fundamental_algorithms/ # Scripts for Chapter 3 concepts
+│   └── linear_regression_intro_demo.py # Introduction to Linear Regression
 ├── .gitignore                   # Files ignored by git
 ├── best_rbf_params.json         # Best hyperparameters found by GridSearchCV for RBF SVM
 ├── requirements.txt             # Python dependencies
@@ -77,6 +79,15 @@ Key topics explored:
     - **Deep Learning** (e.g., Multi-Layer Perceptrons with many layers, CNNs, RNNs) uses deep architectures with multiple hidden layers to automatically learn hierarchical feature representations from raw data. They can model highly complex patterns but require large datasets and more computation.
     - The script `chapter_2_foundations/shallow_vs_deep_demo.py` conceptually demonstrates this by comparing Logistic Regression (shallow) with a simple MLP (representing deep) on a non-linearly separable dataset, visualizing their differing abilities to capture complex decision boundaries and includes conceptual dental examples for caries risk (shallow) vs. radiographic analysis (deep).
 *   **Supervised, Unsupervised, and Reinforcement Learning:** The three main categories of machine learning problems (placeholder for future content).
+
+## Fundamental Algorithms (Chapter 3)
+
+This section will cover fundamental machine learning algorithms, starting with Linear Regression.
+
+*   **Linear Regression:** A foundational algorithm for predicting a continuous numerical value from input features. It aims to find the best linear relationship between inputs and the output by minimizing the sum of squared errors.
+    - Key concepts include the model equation (Y = wX + b), the Mean Squared Error (MSE) loss function, and the process of learning weights (w) and bias (b) from data.
+    - The `chapter_3_fundamental_algorithms/linear_regression_intro_demo.py` script introduces these core concepts with extensive print explanations and multiple visualizations. These include an illustrative 1D example (Study Hours vs. Exam Score), and a detailed dental implant example with mock data. For the dental example, plots cover individual features (HU, Torque, BIC) vs. mock actual scores, predicted vs. actual scores, and a feature contribution bar chart for a single patient. These visuals are designed to clearly explain the model's components and the importance of aspects like feature scaling for weight interpretation.
+    - For more detailed information on the progress and content of Chapter 3, please see the dedicated `chapter_3_fundamental_algorithms/README.md`.
 
 ## Key Learnings & Examples (from SVM Section - Chapter 4)
 
