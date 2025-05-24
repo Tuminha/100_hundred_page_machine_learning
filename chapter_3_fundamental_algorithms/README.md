@@ -49,7 +49,7 @@ The script includes several plots to aid understanding:
 1.  **Illustrative Example: Study Hours vs. Exam Score:**
     *   **Purpose:** To provide a simple, intuitive 1D visualization of what linear regression tries to achieve.
     *   **Content:** A scatter plot of synthetic data (Study Hours vs. Exam Score) showing a positive linear trend. A hypothetical "best-fit" line is overlaid to illustrate the target of the regression.
-    *   *(Image Reference: `plots/study_hours_vs_exam_score.png` - if you save it there)*
+    *   *(Image Reference: ../../plots/chapter_3/linear_regression/study_hours_vs_exam_score.png)*
 
 2.  **Individual Dental Features vs. Mock Actual Implant Score (3 Plots):**
     *   **Purpose:** To visually inspect the relationship between each individual dental feature (HU, Torque, BIC) from the mock data and the mock actual implant scores.
@@ -58,12 +58,12 @@ The script includes several plots to aid understanding:
         *   Torque vs. Mock Actual Score
         *   BIC vs. Mock Actual Score
     *   Each plot includes a hypothetical trend line to suggest the linear relationship the model might try to capture for that feature in isolation.
-    *   *(Image References: `plots/hu_vs_actual.png`, `plots/torque_vs_actual.png`, `plots/bic_vs_actual.png` - if you save them there)*
+    *   *(Image References: ../../plots/chapter_3/linear_regression/hu_vs_actual.png, ../../plots/chapter_3/linear_regression/torque_vs_actual.png, ../../plots/chapter_3/linear_regression/bic_vs_actual.png)*
 
 3.  **Predicted Implant Scores vs. Mock Actual Implant Scores:**
     *   **Purpose:** To visually assess how well the predictions (made using the *hypothetical* weights) align with the mock actual scores.
     *   **Content:** A scatter plot with mock actual scores on the x-axis and the predicted scores on the y-axis. A 45-degree (y=x) "Perfect Prediction Line" is included as a reference. Deviations from this line represent prediction errors.
-    *   *(Image Reference: `plots/predicted_vs_actual.png` - if you save it there)*
+    *   *(Image Reference: ../../plots/chapter_3/linear_regression/predicted_vs_actual.png)*
 
 4.  **Breakdown of Predicted Implant Score (Bar Chart):**
     *   **Purpose:** To clearly show how individual feature contributions and the bias term add up to form the final predicted score for a specific patient.
@@ -73,7 +73,7 @@ The script includes several plots to aid understanding:
         *   BIC Contribution (`w_BIC * BIC_value`)
         *   Bias (`b`)
     *   The numerical value of each component is displayed on its bar.
-    *   *(Image Reference: `plots/contribution_breakdown_patient1.png` - if you save it there)*
+    *   *(Image Reference: ../../plots/chapter_3/linear_regression/contribution_breakdown_patient1.png)*
 
 This script and its explanations serve as the foundational step for understanding Linear Regression before moving on to topics like training algorithms (e.g., Gradient Descent, Normal Equation), model evaluation, and more advanced considerations.
 
