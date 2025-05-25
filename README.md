@@ -85,9 +85,9 @@ Key topics explored:
 This section will cover fundamental machine learning algorithms, starting with Linear Regression.
 
 *   **Linear Regression:** A foundational algorithm for predicting a continuous numerical value from input features. It aims to find the best linear relationship between inputs and the output by minimizing the sum of squared errors.
-    - Key concepts include the model equation (Y = wX + b), the Mean Squared Error (MSE) loss function, and the process of learning weights (w) and bias (b) from data.
+    - Key concepts include the model equation (Y = wX + b), the Mean Squared Error (MSE) loss function, and the process of learning weights (w) and bias (b) from data. The `linear_regression_intro_demo.py` script also conceptually demonstrates prediction using these learned parameters.
     - The `chapter_3_fundamental_algorithms/linear_regression_intro_demo.py` script introduces these core concepts with extensive print explanations and multiple visualizations. These include an illustrative 1D example (Study Hours vs. Exam Score), and a detailed dental implant example with mock data. For the dental example, plots cover individual features (HU, Torque, BIC) vs. mock actual scores, predicted vs. actual scores, and a feature contribution bar chart for a single patient. These visuals are designed to clearly explain the model's components and the importance of aspects like feature scaling for weight interpretation.
-    - For more detailed information on the progress and content of Chapter 3, please see the dedicated `chapter_3_fundamental_algorithms/README.md`.
+    - For more detailed information on the progress and content of Chapter 3, including discussions on model training, prediction with learned parameters, key assumptions (like linearity, homoscedasticity), and the strengths/weaknesses of linear regression, please see the dedicated `chapter_3_fundamental_algorithms/README.md`.
 
 ## Key Learnings & Examples (from SVM Section - Chapter 4)
 
