@@ -183,3 +183,26 @@ Linear regression can be applied to various predictive tasks in dentistry. Throu
 *   **Assumes Homoscedasticity (for valid inferences):** If the variance of errors is not constant across feature values (heteroscedasticity), the standard errors of the coefficients can be biased, affecting hypothesis tests and confidence intervals about the parameters.
 *   **Performance Limits:** While a good starting point, its simplicity means it may not capture complex patterns in data where more sophisticated models might perform better. Its performance is highly dependent on its assumptions being met.
 
+## 2. Introduction to Logistic Regression (`logistic_regression_intro_demo.py`)
+
+This script begins our exploration of Logistic Regression, a fundamental algorithm for binary classification problems.
+
+### Key Concepts Covered (Initial):
+
+*   **What is Logistic Regression?**
+    *   **General Idea:** Classifies input data into one of two categories (e.g., Success/Failure, Risky/Not Risky) by predicting the probability of belonging to a particular class.
+    *   **Core Concept:** It first calculates a linear score (z-score: `z = w · x + b`), just like linear regression. This score is then passed through the **Sigmoid function** (`σ(z) = 1 / (1 + e^(-z))`), which squashes the output to a probability between 0 and 1. A threshold (commonly 0.5) is used on this probability to make the final classification.
+    *   **Dental Example Teaser:** Predicting implant success (1) or failure (0) based on Torque and ISQ, demonstrating the z-score and sigmoid calculation.
+
+*   **Data and Notation:**
+    *   The target variable `yi` in the dataset `{(xi, yi)}` is a binary categorical label (typically 0 or 1).
+    *   The model aims to predict `pi`, the probability of `yi` being 1.
+
+*   **The Model: Logistic Regression Formulas:**
+    *   **Prediction:** Involves calculating the z-score and then applying the Sigmoid function.
+    *   **Loss Function (for Training): Binary Cross-Entropy (BCE) Loss:**
+        *   Formula: `L(y, p) = - [y * log(p) + (1 - y) * log(1-p)]` (where `y` is true label, `p` is predicted probability for class 1).
+        *   This function penalizes the model based on how far its predicted probabilities are from the actual binary labels. The script explains its behavior when `y=1` (loss is `-log(p)`) and when `y=0` (loss is `-log(1-p)`).
+
+*(This script is a work in progress, with further sections on training, detailed prediction, considerations, strengths, and weaknesses to be added based on ongoing study.)*
+

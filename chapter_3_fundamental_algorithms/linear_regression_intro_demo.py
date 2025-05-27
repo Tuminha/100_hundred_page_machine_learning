@@ -108,9 +108,9 @@ plt.ylabel('Exam Score (Y)')
 plt.legend()
 plt.grid(True, linestyle='--')
 print("   Displaying scatter plot of synthetic data (Study Hours vs. Exam Score)...")
-print("   The blue dots are individual data points (students).")
-print("   The red dashed line is a *hypothetical* line that linear regression would try to find")
-print("   to best represent the relationship between study hours and exam scores.")
+# Save the plot
+plt.savefig('plots/chapter_3/linear_regression/study_hours_vs_exam_score.png', dpi=300, bbox_inches='tight')
+print("   Plot saved to: plots/chapter_3/linear_regression/study_hours_vs_exam_score.png")
 plt.show()
 
 # --- 3. The Model: The Linear Regression Equation ⚙️ ---
@@ -252,6 +252,18 @@ for i in range(mock_dental_data.shape[1]):
     plt.legend()
     plt.grid(True, linestyle='--')
     print(f"   Displaying plot: {feature_names[i]} vs. Mock Actual Implant Score...")
+    # Save the plot
+    filename = feature_names[i].lower().replace(' ', '_').replace('(', '').replace(')', '').replace('%', 'percent') + '_vs_actual.png'
+    # Correcting filenames to match established ones:
+    if feature_names[i] == 'HU (Hounsfield Units)':
+        filename = 'hu_vs_actual.png'
+    elif feature_names[i] == 'Torque (Nm)':
+        filename = 'torque_vs_actual.png'
+    elif feature_names[i] == 'BIC (%)':
+        filename = 'bic_vs_actual.png'
+    save_path = f'plots/chapter_3/linear_regression/{filename}'
+    plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    print(f"   Plot saved to: {save_path}")
     plt.show()
 
 # 2. Predicted Scores vs. Mock Actual Scores Plot
@@ -266,6 +278,9 @@ plt.ylabel('Predicted Implant Scores (Hypothetical Weights)')
 plt.legend()
 plt.grid(True, linestyle='--')
 print("   Displaying plot: Predicted Scores vs. Mock Actual Scores...")
+# Save the plot
+plt.savefig('plots/chapter_3/linear_regression/predicted_vs_actual.png', dpi=300, bbox_inches='tight')
+print("   Plot saved to: plots/chapter_3/linear_regression/predicted_vs_actual.png")
 plt.show()
 
 # 3. Feature Contribution Bar Chart (for the first mock patient)
@@ -301,6 +316,9 @@ plt.title(f'Breakdown of Predicted Implant Score for Patient {patient_idx_for_ba
 plt.xticks(rotation=15, ha="right")
 plt.tight_layout() # Adjust layout to make room for rotated x-axis labels
 print(f"   Displaying plot: Feature Contribution Bar Chart for Patient {patient_idx_for_bar + 1}...")
+# Save the plot
+plt.savefig('plots/chapter_3/linear_regression/contribution_breakdown_patient1.png', dpi=300, bbox_inches='tight')
+print("   Plot saved to: plots/chapter_3/linear_regression/contribution_breakdown_patient1.png")
 plt.show()
 
 print("\n   --- Conceptual 'Model Accuracy' ---")

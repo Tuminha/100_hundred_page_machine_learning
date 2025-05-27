@@ -89,6 +89,12 @@ This section will cover fundamental machine learning algorithms, starting with L
     - The `chapter_3_fundamental_algorithms/linear_regression_intro_demo.py` script introduces these core concepts with extensive print explanations and multiple visualizations. These include an illustrative 1D example (Study Hours vs. Exam Score), and a detailed dental implant example with mock data. For the dental example, plots cover individual features (HU, Torque, BIC) vs. mock actual scores, predicted vs. actual scores, and a feature contribution bar chart for a single patient. These visuals are designed to clearly explain the model's components and the importance of aspects like feature scaling for weight interpretation.
     - For more detailed information on the progress and content of Chapter 3, including discussions on model training, prediction with learned parameters, key assumptions (like linearity, homoscedasticity), and the strengths/weaknesses of linear regression, please see the dedicated `chapter_3_fundamental_algorithms/README.md`.
 
+*   **Logistic Regression:** A key algorithm for binary classification problems, used to predict the probability of an input belonging to one of two classes.
+    - It uses a linear combination of inputs (like linear regression) to calculate a score (z-score), then applies the Sigmoid function to transform this score into a probability (0 to 1).
+    - The Binary Cross-Entropy (BCE) loss function is typically used for training.
+    - The initial concepts, including the z-score, Sigmoid function, BCE loss, and a dental example for implant success/failure classification, are introduced in `chapter_3_fundamental_algorithms/logistic_regression_intro_demo.py`.
+    - Further details are also available in `chapter_3_fundamental_algorithms/README.md`.
+
 ## Key Learnings & Examples (from SVM Section - Chapter 4)
 
 This project currently explores **Support Vector Machines (SVM)**, a powerful supervised learning algorithm for classification.
