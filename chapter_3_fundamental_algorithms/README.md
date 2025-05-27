@@ -204,5 +204,10 @@ This script begins our exploration of Logistic Regression, a fundamental algorit
         *   Formula: `L(y, p) = - [y * log(p) + (1 - y) * log(1-p)]` (where `y` is true label, `p` is predicted probability for class 1).
         *   This function penalizes the model based on how far its predicted probabilities are from the actual binary labels. The script explains its behavior when `y=1` (loss is `-log(p)`) and when `y=0` (loss is `-log(1-p)`).
 
+*   **Visualization:**
+    *   The script now includes a plot of the **Sigmoid function**, illustrating how it maps any real-valued z-score to a probability between 0 and 1. This is saved to `plots/chapter_3/logistic_regression/sigmoid_function_plot.png`.
+    *   Sigmoid Function Plot:
+        ![](../plots/chapter_3/logistic_regression/sigmoid_function_plot.png)
+
 *(This script is a work in progress, with further sections on training, detailed prediction, considerations, strengths, and weaknesses to be added based on ongoing study.)*
 

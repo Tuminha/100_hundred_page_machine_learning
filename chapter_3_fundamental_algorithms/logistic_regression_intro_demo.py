@@ -15,6 +15,7 @@ the learning material on Logistic Regression.
 """
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 print("--- Chapter 3: Logistic Regression - Introduction & Concepts ---")
 
@@ -126,6 +127,38 @@ print("     - True y=0, Predicted p is low (close to 0)  -> Loss is low (Good mo
 print("   The total loss over the dataset is typically the average of these individual losses.")
 
 
-print("\n--- End of Logistic Regression Introduction (Sections 1-3) ---")
+# --- 3.1 Visualizing the Sigmoid Function ---
+print("\n\n--- 3.1 Visualizing the Sigmoid Function ---")
+print("The Sigmoid function is key to logistic regression, as it maps any real-valued number (z-score)")
+print("into a probability between 0 and 1.")
+
+# Define the sigmoid function for plotting
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+# Generate z values for plotting
+z_values_plot = np.linspace(-10, 10, 200) # Range of z-scores from -10 to 10
+sigmoid_values_plot = sigmoid(z_values_plot)
+
+plt.figure(figsize=(8, 6))
+plt.plot(z_values_plot, sigmoid_values_plot, label="σ(z) = 1 / (1 + e^(-z))", color="green")
+plt.title("The Sigmoid (Logistic) Function")
+plt.xlabel("z (log-odds, linear combination w·x + b)")
+plt.ylabel("σ(z) (Probability)")
+plt.grid(True, linestyle='--')
+plt.axhline(y=0.5, color='red', linestyle='--', label="Threshold = 0.5")
+plt.axhline(y=0, color='black', linestyle='-', linewidth=0.5)
+plt.axhline(y=1, color='black', linestyle='-', linewidth=0.5)
+plt.yticks(np.arange(0, 1.1, 0.1)) # Y-axis ticks from 0 to 1 in 0.1 increments
+plt.legend()
+
+# Save the plot
+sigmoid_plot_save_path = "plots/chapter_3/logistic_regression/sigmoid_function_plot.png"
+plt.savefig(sigmoid_plot_save_path, dpi=300, bbox_inches='tight')
+print(f"   Sigmoid function plot saved to: {sigmoid_plot_save_path}")
+print("   Displaying Sigmoid function plot...")
+plt.show()
+
+print("\n--- End of Logistic Regression Introduction (Sections 1-3 & Sigmoid Plot) ---")
 print("   Further sections (Training, Prediction details, Considerations, etc.) will be added later.")
 print("-" * 70) 
