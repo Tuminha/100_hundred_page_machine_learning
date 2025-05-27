@@ -40,39 +40,38 @@ print("   - Training (to be detailed later): The model learns optimal weights (w
 print("     called Binary Cross-Entropy, often using an optimization algorithm like Gradient Descent.")
 
 print("\n   - Example Prediction (after hypothetical training):")
-print("     Suppose after training, we found: w_torque = 0.4, w_ISQ = 1.2, and b = -2.")
-print("     New implant data: Torque = 35 Nm, ISQ = 75.")
+# Adjusted weights and bias for more illustrative z-scores on a typical sigmoid plot
+w_torque_example = 0.1
+w_ISQ_example = 0.15
+b_example_logistic = -7 # Adjusted bias
+print(f"     Adjusted Hypothetical Learned Parameters: w_torque = {w_torque_example}, w_ISQ = {w_ISQ_example}, b = {b_example_logistic}")
 
-# Given values for the example
-w_torque_example = 0.4
-w_ISQ_example = 1.2
-b_example_logistic = -2
+# Dental Example 1: Expected High Probability
+Torque_ex1 = 40
+ISQ_ex1 = 70
+z_score_ex1 = (Torque_ex1 * w_torque_example) + (ISQ_ex1 * w_ISQ_example) + b_example_logistic
+prob_ex1 = 1 / (1 + np.exp(-z_score_ex1))
+print(f"\n   Dental Example 1 (High P): Torque={Torque_ex1}, ISQ={ISQ_ex1}")
+print(f"     z1 = ({Torque_ex1}*{w_torque_example}) + ({ISQ_ex1}*{w_ISQ_example}) + ({b_example_logistic}) = {z_score_ex1:.2f}")
+print(f"     σ(z1) = {prob_ex1:.4f} -> Likely Success")
 
-Torque_new_logistic = 35
-ISQ_new_logistic = 75
+# Dental Example 2: Expected Low Probability
+Torque_ex2 = 15
+ISQ_ex2 = 30
+z_score_ex2 = (Torque_ex2 * w_torque_example) + (ISQ_ex2 * w_ISQ_example) + b_example_logistic
+prob_ex2 = 1 / (1 + np.exp(-z_score_ex2))
+print(f"\n   Dental Example 2 (Low P): Torque={Torque_ex2}, ISQ={ISQ_ex2}")
+print(f"     z2 = ({Torque_ex2}*{w_torque_example}) + ({ISQ_ex2}*{w_ISQ_example}) + ({b_example_logistic}) = {z_score_ex2:.2f}")
+print(f"     σ(z2) = {prob_ex2:.4f} -> Likely Failure")
 
-# 1. Calculate the z-score (linear combination)
-z_score_example = (Torque_new_logistic * w_torque_example) + (ISQ_new_logistic * w_ISQ_example) + b_example_logistic
-print(f"     1. Calculate z-score: z = (Torque * w_torque) + (ISQ * w_ISQ) + b")
-print(f"        z = ({Torque_new_logistic} * {w_torque_example}) + ({ISQ_new_logistic} * {w_ISQ_example}) + ({b_example_logistic})")
-print(f"        z = {Torque_new_logistic * w_torque_example} + {ISQ_new_logistic * w_ISQ_example} + ({b_example_logistic})")
-print(f"        z = {z_score_example}")
-
-# 2. Apply the Sigmoid function
-# σ(z) = 1 / (1 + e^(-z))
-probability_success = 1 / (1 + np.exp(-z_score_example))
-print(f"\n     2. Apply Sigmoid function: σ(z) = 1 / (1 + e^(-z))")
-print(f"        σ({z_score_example}) = 1 / (1 + e^(-{z_score_example}))")
-print(f"        Since e^(-102) is extremely close to 0 (approx {np.exp(-z_score_example):.10e})...") # Show the small value
-print(f"        σ({z_score_example}) ≈ 1 / (1 + 0)")
-print(f"        σ({z_score_example}) ≈ {probability_success:.4f}")
-
-print("\n     3. Interpretation:")
-print(f"        The predicted probability of success is approximately {probability_success:.4f} (or {probability_success*100:.2f}%)." )
-if probability_success > 0.5:
-    print("        Since this probability > 0.5, the model predicts 'Success' (Class 1) for this implant.")
-else:
-    print("        Since this probability <= 0.5, the model predicts 'Failure' (Class 0) for this implant.")
+# Dental Example 3: Expected Mid-Range Probability
+Torque_ex3 = 30
+ISQ_ex3 = 40 # Adjusted for z near 0
+z_score_ex3 = (Torque_ex3 * w_torque_example) + (ISQ_ex3 * w_ISQ_example) + b_example_logistic
+prob_ex3 = 1 / (1 + np.exp(-z_score_ex3))
+print(f"\n   Dental Example 3 (Mid P): Torque={Torque_ex3}, ISQ={ISQ_ex3}")
+print(f"     z3 = ({Torque_ex3}*{w_torque_example}) + ({ISQ_ex3}*{w_ISQ_example}) + ({b_example_logistic}) = {z_score_ex3:.2f}")
+print(f"     σ(z3) = {prob_ex3:.4f} -> Uncertain (near threshold)")
 
 
 # --- 2. The Building Blocks: Data and Notation 🧱 ---
@@ -136,13 +135,21 @@ print("into a probability between 0 and 1.")
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))
 
-# Generate z values for plotting
-z_values_plot = np.linspace(-10, 10, 200) # Range of z-scores from -10 to 10
+# Generate z values for plotting (ensure range covers example z-scores)
+z_min = min(-8, z_score_ex1, z_score_ex2, z_score_ex3) -1 # Ensure a bit of padding
+z_max = max(8, z_score_ex1, z_score_ex2, z_score_ex3) +1
+z_values_plot = np.linspace(z_min, z_max, 200) 
 sigmoid_values_plot = sigmoid(z_values_plot)
 
-plt.figure(figsize=(8, 6))
+plt.figure(figsize=(10, 7)) # Slightly larger figure
 plt.plot(z_values_plot, sigmoid_values_plot, label="σ(z) = 1 / (1 + e^(-z))", color="green")
-plt.title("The Sigmoid (Logistic) Function")
+
+# Plotting the dental examples on the sigmoid curve
+plt.scatter([z_score_ex1], [prob_ex1], color='blue', s=100, zorder=5, label=f'Ex1 (High P: z={z_score_ex1:.2f}, P={prob_ex1:.2f})')
+plt.scatter([z_score_ex2], [prob_ex2], color='red', s=100, zorder=5, label=f'Ex2 (Low P: z={z_score_ex2:.2f}, P={prob_ex2:.2f})')
+plt.scatter([z_score_ex3], [prob_ex3], color='purple', s=100, zorder=5, label=f'Ex3 (Mid P: z={z_score_ex3:.2f}, P={prob_ex3:.2f})')
+
+plt.title("The Sigmoid (Logistic) Function with Dental Examples")
 plt.xlabel("z (log-odds, linear combination w·x + b)")
 plt.ylabel("σ(z) (Probability)")
 plt.grid(True, linestyle='--')
@@ -159,6 +166,43 @@ print(f"   Sigmoid function plot saved to: {sigmoid_plot_save_path}")
 print("   Displaying Sigmoid function plot...")
 plt.show()
 
-print("\n--- End of Logistic Regression Introduction (Sections 1-3 & Sigmoid Plot) ---")
+# --- 3.2 Visualizing Binary Cross-Entropy (BCE) Loss ---
+print("\n\n--- 3.2 Visualizing Binary Cross-Entropy (BCE) Loss ---")
+print("BCE Loss quantifies the error for binary classification tasks.")
+
+# Probabilities for plotting loss (avoiding log(0))
+p_plot = np.linspace(0.001, 0.999, 200)
+
+# Case 1: True label y = 1. Loss = -log(p)
+loss_y_is_1 = -np.log(p_plot)
+plt.figure(figsize=(8, 6))
+plt.plot(p_plot, loss_y_is_1, color='dodgerblue', label="Loss when True Label y = 1 (Loss = -log(p))")
+plt.title("Binary Cross-Entropy Loss (when True Label y = 1)")
+plt.xlabel("Predicted Probability p for Class 1, σ(z)")
+plt.ylabel("Loss = -log(p)")
+plt.grid(True, linestyle='--')
+plt.legend()
+bce1_plot_save_path = "plots/chapter_3/logistic_regression/bce_loss_y_equals_1.png"
+plt.savefig(bce1_plot_save_path, dpi=300, bbox_inches='tight')
+print(f"   BCE Loss (y=1) plot saved to: {bce1_plot_save_path}")
+print("   Displaying BCE Loss (y=1) plot...")
+plt.show()
+
+# Case 2: True label y = 0. Loss = -log(1-p)
+loss_y_is_0 = -np.log(1 - p_plot)
+plt.figure(figsize=(8, 6))
+plt.plot(p_plot, loss_y_is_0, color='orangered', label="Loss when True Label y = 0 (Loss = -log(1-p))")
+plt.title("Binary Cross-Entropy Loss (when True Label y = 0)")
+plt.xlabel("Predicted Probability p for Class 1, σ(z)")
+plt.ylabel("Loss = -log(1-p)")
+plt.grid(True, linestyle='--')
+plt.legend()
+bce0_plot_save_path = "plots/chapter_3/logistic_regression/bce_loss_y_equals_0.png"
+plt.savefig(bce0_plot_save_path, dpi=300, bbox_inches='tight')
+print(f"   BCE Loss (y=0) plot saved to: {bce0_plot_save_path}")
+print("   Displaying BCE Loss (y=0) plot...")
+plt.show()
+
+print("\n--- End of Logistic Regression Introduction (Sections 1-3 & Visualizations) ---")
 print("   Further sections (Training, Prediction details, Considerations, etc.) will be added later.")
 print("-" * 70) 

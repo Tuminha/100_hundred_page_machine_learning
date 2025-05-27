@@ -205,9 +205,16 @@ This script begins our exploration of Logistic Regression, a fundamental algorit
         *   This function penalizes the model based on how far its predicted probabilities are from the actual binary labels. The script explains its behavior when `y=1` (loss is `-log(p)`) and when `y=0` (loss is `-log(1-p)`).
 
 *   **Visualization:**
-    *   The script now includes a plot of the **Sigmoid function**, illustrating how it maps any real-valued z-score to a probability between 0 and 1. This is saved to `plots/chapter_3/logistic_regression/sigmoid_function_plot.png`.
-    *   Sigmoid Function Plot:
+    *   The script now includes a plot of the **Sigmoid function**, illustrating how it maps any real-valued z-score to a probability between 0 and 1. This plot also shows the placement of the three dental examples (High P, Low P, Mid P) on the curve, visualizing their respective z-scores and resulting probabilities. This is saved to `plots/chapter_3/logistic_regression/sigmoid_function_plot.png`.
+    *   Sigmoid Function Plot with Dental Examples:
         ![](../plots/chapter_3/logistic_regression/sigmoid_function_plot.png)
+    *   **Binary Cross-Entropy (BCE) Loss Plots:** Two plots are generated to visualize the BCE loss behavior:
+        *   **Case 1 (True Label y = 1):** Shows `Loss = -log(p)` vs. `p` (predicted probability for class 1). Illustrates how loss increases as `p` deviates from 1. Saved to `plots/chapter_3/logistic_regression/bce_loss_y_equals_1.png`.
+        *   BCE Loss (y=1):
+            ![](../plots/chapter_3/logistic_regression/bce_loss_y_equals_1.png)
+        *   **Case 2 (True Label y = 0):** Shows `Loss = -log(1-p)` vs. `p` (predicted probability for class 1). Illustrates how loss increases as `p` deviates from 0 (meaning `1-p` deviates from 1). Saved to `plots/chapter_3/logistic_regression/bce_loss_y_equals_0.png`.
+        *   BCE Loss (y=0):
+            ![](../plots/chapter_3/logistic_regression/bce_loss_y_equals_0.png)
 
 *(This script is a work in progress, with further sections on training, detailed prediction, considerations, strengths, and weaknesses to be added based on ongoing study.)*
 
