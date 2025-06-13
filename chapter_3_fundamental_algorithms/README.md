@@ -218,3 +218,162 @@ This script begins our exploration of Logistic Regression, a fundamental algorit
 
 *(This script is a work in progress, with further sections on training, detailed prediction, considerations, strengths, and weaknesses to be added based on ongoing study.)*
 
+## 3. Introduction to Decision Trees (`decision_trees_intro_demo.py`)
+
+This script provides a comprehensive exploration of Decision Trees, a fundamental algorithm for both classification and regression problems, focusing on dental applications and practical understanding.
+
+### Key Concepts Covered:
+
+*   **What is Decision Tree Learning?**
+    *   **Core Idea:** Decision trees are shallow learning algorithms that create flowchart-like structures for decision making based on data features.
+    *   **Classification Trees:** Predict categorical outcomes (e.g., implant success/failure) by navigating through yes/no questions.
+    *   **Regression Trees:** Predict continuous values (e.g., ISQ scores) using the same tree structure approach.
+    *   **Key Concept:** Instead of mathematical formulas, decision trees use simple flowcharts with sequential questions leading to final predictions.
+    *   **Dental Relevance:** Extremely useful for clinical decision support, risk assessment, and treatment planning in dental practice.
+
+*   **Data and Notation:**
+    *   **Dataset:** Same notation as other algorithms: {xi, yi} where xi are input features and yi are target outcomes.
+    *   **Target Variable Types:**
+        *   Classification: yi ∈ {0, 1} (e.g., 0=Failure, 1=Success)
+        *   Regression: yi ∈ ℝ (continuous values like predicted ISQ)
+    *   **Feature Vector:** xi is D-dimensional containing patient characteristics, clinical measurements, and procedural factors.
+    *   **Mock Dental Dataset:** 100 patients with features (Age, Smoker, Torque, ISQ) and implant success outcomes.
+
+*   **Tree Structure & The "Best Question":**
+    *   **Components:**
+        *   Root node: First question splitting entire dataset
+        *   Internal nodes: Subsequent questions for further subdivision
+        *   Branches: Yes/No pathways from each node
+        *   Leaf nodes: Final decisions/predictions
+    *   **Split Selection:** Algorithm searches for splits that minimize impurity (maximize information gain).
+    *   **Impurity Measures:**
+        *   **Entropy:** H(S) = -[p₁·log₂(p₁) + p₀·log₂(p₀)] from information theory
+        *   **Gini Impurity:** Gini(S) = 1 - [p₁² + p₀²] (computationally simpler alternative)
+    *   **Information Gain:** Entropy(parent) - Weighted_Average_Entropy(children)
+    *   **Pure vs Impure Nodes:** Demonstrates perfect separation (entropy=0) vs maximum confusion (entropy=1).
+
+*   **Training Process: Recursive Partitioning:**
+    *   **Algorithm Steps:**
+        1. Start at root node with entire dataset
+        2. Test every potential split on every feature
+        3. Calculate entropy/impurity for each split
+        4. Choose split with highest information gain
+        5. Divide dataset into subsets
+        6. Repeat process for each child node
+    *   **Stopping Criteria:** Pre-pruning (depth limits, minimum samples) and post-pruning to prevent overfitting.
+
+*   **Prediction Phase:**
+    *   **Process:** New data enters at root, traverses tree based on feature values until reaching leaf node.
+    *   **Output:** Classification (majority class) or regression (average of leaf samples).
+    *   **Dental Example:** Patient with Age=45, Smoker=Yes, Torque=35, ISQ=65 flows through tree: ISQ≤70 → Smoker=Yes → FAILURE prediction.
+
+### Visualizations in `decision_trees_intro_demo.py`:
+
+The script creates 9 comprehensive educational plots:
+
+1.  **Tree Structure Example:**
+    *   **Purpose:** Illustrate basic tree components (root, internal nodes, branches, leaves) with dental implant prediction example.
+    *   **Content:** Hand-drawn tree diagram showing ISQ>70 as root node, smoking status and age as internal nodes, leading to SUCCESS/FAILURE outcomes.
+    *   Tree Structure:
+        ![](../plots/chapter_3/decision_trees/tree_structure_example.png)
+
+2.  **Impurity Measures Comparison:**
+    *   **Purpose:** Visual comparison of Entropy vs Gini Impurity across different class proportions.
+    *   **Content:** Side-by-side plots showing how both measures behave, highlighting pure nodes (impurity=0) and maximum impurity points.
+    *   Impurity Measures:
+        ![](../plots/chapter_3/decision_trees/impurity_measures_comparison.png)
+
+3.  **Information Gain Comparison:**
+    *   **Purpose:** Demonstrate how algorithm selects best splits by comparing information gain across different features.
+    *   **Content:** Bar chart comparing ISQ>70, Age>60, and Smoker=Yes splits, showing ISQ as the optimal first split.
+    *   Information Gain:
+        ![](../plots/chapter_3/decision_trees/information_gain_comparison.png)
+
+4.  **Tree Building Process:**
+    *   **Purpose:** Step-by-step visualization of how decision trees recursively partition data.
+    *   **Content:** Four-panel progression showing initial mixed dataset, first ISQ split, smoking status consideration, and final rectangular decision regions.
+    *   Tree Building Process:
+        ![](../plots/chapter_3/decision_trees/tree_building_process.png)
+
+5.  **Trained Decision Tree:**
+    *   **Purpose:** Show actual scikit-learn decision tree trained on dental data with all split conditions and sample distributions.
+    *   **Content:** Complete tree visualization with feature names, thresholds, class distributions, and leaf predictions.
+    *   Trained Tree:
+        ![](../plots/chapter_3/decision_trees/trained_decision_tree.png)
+
+6.  **Feature Importance:**
+    *   **Purpose:** Illustrate which features contribute most to decision-making process.
+    *   **Content:** Bar chart ranking features by importance scores, highlighting Torque as most important (0.548), followed by Age (0.265), ISQ (0.187), and Smoker (0.000).
+    *   Feature Importance:
+        ![](../plots/chapter_3/decision_trees/feature_importance.png)
+
+7.  **Decision Boundaries:**
+    *   **Purpose:** Demonstrate rectangular decision boundary limitations of decision trees.
+    *   **Content:** 2D visualization showing how tree creates rectangular regions in ISQ vs Torque space, with success/failure regions clearly delineated.
+    *   Decision Boundaries:
+        ![](../plots/chapter_3/decision_trees/decision_boundaries.png)
+
+8.  **Dental Applications Overview:**
+    *   **Purpose:** Showcase multiple practical applications of decision trees in dental practice.
+    *   **Content:** Three-panel visualization showing simplified trees for Periodontal Disease Risk, Implant Success, and Treatment Acceptance scenarios.
+    *   Dental Applications:
+        ![](../plots/chapter_3/decision_trees/dental_applications_overview.png)
+
+9.  **Strengths vs Weaknesses:**
+    *   **Purpose:** Comprehensive comparison of decision tree advantages and limitations.
+    *   **Content:** Side-by-side horizontal bar charts quantifying strengths (interpretation, nonlinearity, no scaling) vs weaknesses (overfitting, instability, greedy optimization).
+    *   Strengths vs Weaknesses:
+        ![](../plots/chapter_3/decision_trees/strengths_vs_weaknesses.png)
+
+## 4. Important Considerations for Decision Trees 🤔
+
+*   **Greedy Nature:** Makes locally optimal decisions without considering global consequences, potentially missing the globally optimal tree structure.
+
+*   **Instability:** Small changes in training data can produce dramatically different trees, making individual trees less reliable than ensemble methods.
+
+*   **Non-parametric Model:** Unlike linear/logistic regression, no fixed parameters (w, b). The entire tree structure is learned from data.
+
+*   **Rectangular Decision Boundaries:** Can only create axis-aligned splits, limiting ability to capture diagonal or curved relationships between features.
+
+*   **Feature Bias:** Tends to favor features with more possible split points, potentially overlooking simpler but effective features.
+
+*   **Overfitting Risk:** Without proper pruning, trees can become overly complex, memorizing training data rather than learning generalizable patterns.
+
+## 5. Dental Applications & Examples Summarized 🦷
+
+Decision trees excel in dental practice for multiple applications:
+
+*   **Periodontal Disease Risk Assessment:** Predict patient risk based on age, smoking status, diabetes, and plaque scores to guide preventive interventions.
+
+*   **Implant Success Prediction:** Assess likelihood of complications using bone quality, surgical torque, ISQ values, and patient lifestyle factors.
+
+*   **Treatment Acceptance Modeling:** Predict patient acceptance based on demographics, treatment complexity, cost, and previous experiences.
+
+*   **Clinical Decision Support:** Assist treatment planning with evidence-based recommendations derived from patient characteristics and clinical measurements.
+
+*   **Diagnostic Assistance:** Support differential diagnosis by systematically evaluating clinical signs and symptoms.
+
+## 6. Strengths & Weaknesses of Decision Trees 💪
+
+### Strengths:
+
+*   **High Interpretability:** Tree structure is easily understood by clinicians, providing transparent decision-making rationale.
+*   **Nonlinear Relationships:** Can capture complex feature interactions and threshold effects automatically.
+*   **Mixed Data Types:** Handles both numerical (ISQ, torque) and categorical (smoker, gender) features seamlessly.
+*   **No Feature Scaling Required:** Algorithm is not distance-based, so features don't need standardization.
+*   **Missing Value Handling:** Can work with incomplete data through surrogate splits.
+*   **Feature Interaction Detection:** Automatically identifies important feature combinations.
+*   **Clinical Intuition Alignment:** Tree logic often matches clinical decision-making processes.
+
+### Weaknesses:
+
+*   **Overfitting Tendency:** Can create overly complex trees that don't generalize well to new patients.
+*   **High Instability:** Small data changes can completely alter tree structure, affecting reliability.
+*   **Greedy Optimization:** Local optimization approach may miss globally optimal tree structures.
+*   **Boundary Limitations:** Rectangular splits struggle with diagonal relationships between features.
+*   **Feature Level Bias:** Favors features with many possible values over equally informative simpler features.
+*   **Noise Sensitivity:** Can incorporate irrelevant patterns from noisy data into tree structure.
+*   **Limited Expressiveness:** May require very deep trees to approximate smooth decision boundaries.
+
+This comprehensive introduction provides dentists with both theoretical understanding and practical insights for applying decision trees in clinical practice, supported by extensive visualizations perfect for educational presentations or social media sharing.
+
